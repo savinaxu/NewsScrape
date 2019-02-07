@@ -2,24 +2,24 @@
     <div class="home-header">
         <h1 class="home-h1">TECH NEWS</h1>
         <p class="home-p">The latest tech news about the world's best (and sometimes worst) hardware, apps, and much more. From top companies like Google and Apple to tiny startups vying for your attention, Verge Tech has the latest in what matters in technology daily.</p>
-        <button class="scrape">Scrape Tech News</button>
-        <a href="/save"><button class="saved">Saved Tech News</button></a>
+        <a href="/"><button class="home">Home Page</button></a>
     </div>
 </div>
 
 <div class="home-article">
-    {{#each articles}}
+    {{#each save}}
         <div class="individual-article">
             <div class="article-img-container">
-                <img id="img-{{@index}}" src="{{this.img}}" alt="{{this.title}}" class="article-img">
+                <img id="img-{{this.id}}" src="{{this.img}}" alt="{{this.title}}" class="article-img">
             </div>
 
             <div class="article-text-container">
-                <h2 id="title-{{@index}}" class="article-heading">{{this.title}}</h2>
-                <a id="link-{{@index}}" class="article-link" href="{{this.link}}">{{this.link}}</a>
+                <h2 id="title-{{this.id}}" class="article-heading">{{this.title}}</h2>
+                <a id="link-{{this.id}}" class="article-link" href="{{this.link}}">{{this.link}}</a>
             </div>
 
-            <button data-id={{@index}} class="save-article">Save</button>
+            <button data-id={{this.id}} class="note-article">Notes</button>
+            <button data-id={{this.id}} class="delete-article">Delete</button>
         </div>
     {{/each}}
 </div>

@@ -82,6 +82,51 @@ app.get("/scrape", function(req, res) {
     })
 })
 
+app.get("/save", function(req, res) {
+    db.Article.find({})
+      .then(function(dbArticle) {
+          res.render("save",{
+              save: dbArticle
+          })
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+})
+
+app.post("/api/save", function(req, res) {
+    db.Article.create(req.body)
+      .then(function(dbArticle) {
+          res.json(dbArticle)
+      })
+      .catch(function(err) {
+          res.json(err)
+      })
+})
+
+app.delete("/save/:id", function(req, res) {
+    db.Article.deleteOne({
+        _id: req.params.id
+    }).then(function(removed) {
+        res.json(removed)
+    }).catch(function(err) {
+        res.json(err)
+    })
+})
+
+app.get("/note/:id", function(req, res) {
+    db.Article.findOne({ _id: req.params.id })
+      .populate("note")
+      .then(function(dbArticle) {
+          res.render("note", {
+              note: dbArticle
+          })
+      })
+      .catch(function(err) {
+          res.json(err)
+      });
+})
+
 // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");

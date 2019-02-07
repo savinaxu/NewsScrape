@@ -1,0 +1,48 @@
+<div class="home-container">
+    <div class="home-header">
+        <h1 class="home-h1">TECH NEWS</h1>
+        <p class="home-p">The latest tech news about the world's best (and sometimes worst) hardware, apps, and much more. From top companies like Google and Apple to tiny startups vying for your attention, Verge Tech has the latest in what matters in technology daily.</p>
+        <a href="/"><button class="home">Home Page</button></a>
+        <a href="/save"><button class="saved">Saved Tech News</button></a>
+    </div>
+</div>
+
+<div class="note-header">
+    <h2 class="note-heading">NOTES FOR</h2>
+    <P class="note-heading-title">{{note.title}}</P>
+</div>
+
+<div class="note-container">
+    <div class="previous-note">
+        <h2>Previous Comments</h2>
+        {{#if note.note}}
+            {{#each note.note}}
+                <div class="individual-note">
+                    <div class="individual-note-content">
+                        <h4>{{this.title}}</h4>
+                        <p>{{this.body}}</p>
+                    </div>
+                    <button data-id="{{this._id}}" class="delete-article">Delete</button>
+                </div>
+            {{/each}}
+            {{else}}
+                <h6>There is no comments on this article.</h6>
+        {{/if}}
+    </div>
+
+    <div class="note-form">
+        <form action="" method="POST">
+            <div class="form-input">
+                <label for="title-note" class="title-note">Title</label>
+                <input id="title-note" class="title-note-input" type="text" placeholder="">
+            </div>
+
+            <div class="form-input">
+                <label for="content-note">Notes For The Article</label>
+                <textarea name="" id="content-note" cols="80" rows="10"></textarea>
+            </div>
+
+            <button data-id={{note._id}} class="submit">Submit</button>
+        </form>
+    </div>
+</div>
