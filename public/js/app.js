@@ -43,4 +43,23 @@ $(function() {
         window.location.replace("/note/" + noteId);
     })
 
+    $(".submit").on("click", function() {
+        let submitId = $(this).attr("data-id")
+        let notesData = {}
+
+        notesData.title = $("#title-note").val()
+        notesData.body = $("#content-note").val()
+
+        $.ajax({
+            method: "POST",
+            dataType: "json",
+            url: "/note/" + submitId,
+            data: notesData
+        }).then(function(data) {
+            window.location.replace("/note/" + data._id)
+        })
+        $("#title-note").val("")
+        $("#content-note").val("")
+    })
+
 })

@@ -127,6 +127,34 @@ app.get("/note/:id", function(req, res) {
       });
 })
 
+app.post("/note/:id", function(req, res) {
+    db.Note.create(req.body)
+      .then(function(dbNote) {
+          db.Article.findOneAndUpdate({
+              _id: req.params.id
+          },
+          {
+              $push: {
+                  note: dbNote._id
+              }
+          },
+          {
+              new: true
+          }).populate("note")
+            .then(function(dbArticle) {
+                res.render("note", {
+                    note: dbArticle
+                })
+            })
+            .catch(function(err) {
+                res.json(err)
+            })
+      })
+      .catch(function(err) {
+          res.json(err)
+      })
+})
+
 // Start the server
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");

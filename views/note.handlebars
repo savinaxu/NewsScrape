@@ -14,7 +14,7 @@
 
 <div class="note-container">
     <div class="previous-note">
-        <h2>Previous Comments</h2>
+        <h2 class="pre">Previous Comments</h2>
         {{#if note.note}}
             {{#each note.note}}
                 <div class="individual-note">
@@ -33,13 +33,13 @@
     <div class="note-form">
         <form action="" method="POST">
             <div class="form-input">
-                <label for="title-note" class="title-note">Title</label>
-                <input id="title-note" class="title-note-input" type="text" placeholder="">
+                <label for="title-note" class="title-note">Title For The Notes</label>
+                <input id="title-note" class="title-note-input" type="text" placeholder="eg. Savina Got Hired!">
             </div>
 
             <div class="form-input">
-                <label for="content-note">Notes For The Article</label>
-                <textarea name="" id="content-note" cols="80" rows="10"></textarea>
+                <label for="content-note" class="title-note">Notes For The Article</label>
+                <textarea placeholder="Please enter your notes here!" class="text-note-input" id="content-note" cols="70" rows="10"></textarea>
             </div>
 
             <button data-id={{note._id}} class="submit">Submit</button>
