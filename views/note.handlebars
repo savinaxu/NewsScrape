@@ -9,20 +9,20 @@
 
 <div class="note-header">
     <h2 class="note-heading">NOTES FOR</h2>
-    <P class="note-heading-title">{{note.title}}</P>
+    <P class="note-heading-title">{{data.title}}</P>
 </div>
 
 <div class="note-container">
     <div class="previous-note">
         <h2 class="pre">Previous Comments</h2>
-        {{#if note.note}}
-            {{#each note.note}}
+        {{#if data.note}}
+            {{#each data.note}}
                 <div class="individual-note">
                     <div class="individual-note-content">
-                        <h4>{{this.title}}</h4>
-                        <p>{{this.body}}</p>
+                        <h4 class="note-title">{{this.title}}</h4>
+                        <p class="note-body">{{this.body}}</p>
                     </div>
-                    <button data-id="{{this._id}}" class="delete-article">Delete</button>
+                    <button data-id="{{this._id}}" class="delete-note">Delete</button>
                 </div>
             {{/each}}
             {{else}}
@@ -42,7 +42,7 @@
                 <textarea placeholder="Please enter your notes here!" class="text-note-input" id="content-note" cols="70" rows="10"></textarea>
             </div>
 
-            <button data-id={{note._id}} class="submit">Submit</button>
+            <button data-id={{data._id}} class="submit">Submit</button>
         </form>
     </div>
 </div>

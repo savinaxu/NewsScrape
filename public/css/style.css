@@ -119,6 +119,7 @@
 .save-article,
 .note-article,
 .delete-article,
+.delete-note,
 .submit {
     font-size: 18px;
     letter-spacing: 2px;
@@ -138,6 +139,8 @@
 .note-article:focus,
 .delete-article:hover,
 .delete-article:focus,
+.delete-note:hover,
+.delete-note:focus,
 .submit:hover,
 .submit:focus {
     box-shadow: 0 2px 10px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.1);
@@ -147,7 +150,8 @@
 }
 
 .note-article,
-.delete-article {
+.delete-article,
+.delete-note {
     font-size: 15px;
 }
 
@@ -210,14 +214,28 @@ label {
     margin-bottom: 50px;
     border-bottom: 1px solid #a0a0a0;
     padding-bottom: 30px;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
-.individual-note-content {
-    margin-right: 50px;
+.note-title {
+    font-family: 'Nunito', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.note-body {
+    font-family: 'Nunito', sans-serif;
 }
 
 .pre {
     margin-bottom: 50px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+}
+
+.delete-note {
+    height: 37px;
 }
 
 

@@ -25,7 +25,10 @@ app.use(bodyParser.json());
 
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
-app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.engine("handlebars", exphbs({ 
+    defaultLayout: "main",
+    helpers: require('./config/handlebars-helpers')
+}));
 app.set("view engine", "handlebars");
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
@@ -118,8 +121,9 @@ app.get("/note/:id", function(req, res) {
     db.Article.findOne({ _id: req.params.id })
       .populate("note")
       .then(function(dbArticle) {
+          console.log("usdhucs", dbArticle)
           res.render("note", {
-              note: dbArticle
+              data: dbArticle
           })
       })
       .catch(function(err) {
@@ -140,11 +144,9 @@ app.post("/note/:id", function(req, res) {
           },
           {
               new: true
-          }).populate("note")
+          })
             .then(function(dbArticle) {
-                res.render("note", {
-                    note: dbArticle
-                })
+                res.json(dbArticle)
             })
             .catch(function(err) {
                 res.json(err)
@@ -153,6 +155,16 @@ app.post("/note/:id", function(req, res) {
       .catch(function(err) {
           res.json(err)
       })
+})
+
+app.delete("/note/:id", function(req, res) {
+    db.Note.deleteOne({
+        _id: req.params.id
+    }).then(function(deleted) {
+        res.json(deleted)
+    }).catch(function(err) {
+        res.json(err)
+    })
 })
 
 // Start the server

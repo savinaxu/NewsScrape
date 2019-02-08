@@ -42,24 +42,35 @@ $(function() {
         })
         window.location.replace("/note/" + noteId);
     })
+    
 
-    $(".submit").on("click", function() {
+    $(".submit").on("click", function(e) {
+        e.preventDefault()
+
         let submitId = $(this).attr("data-id")
         let notesData = {}
 
         notesData.title = $("#title-note").val()
         notesData.body = $("#content-note").val()
+        console.log(notesData)
 
         $.ajax({
             method: "POST",
-            dataType: "json",
             url: "/note/" + submitId,
             data: notesData
         }).then(function(data) {
             window.location.replace("/note/" + data._id)
         })
-        $("#title-note").val("")
-        $("#content-note").val("")
+    })
+
+    $(".delete-note").on("click", function() {
+        let deleteNoteId = $(this).attr("data-id")
+        $.ajax({
+            method: "DELETE",
+            url: "/note/" + deleteNoteId
+        }).then(function(data) {
+            location.reload()
+        })
     })
 
 })
